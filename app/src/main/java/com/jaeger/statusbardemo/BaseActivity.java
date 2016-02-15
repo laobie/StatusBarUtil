@@ -11,10 +11,10 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        setStatusBarColor();
+        setStatusBar();
     }
 
-    protected void setStatusBarColor() {
+    protected void setStatusBar() {
         StatusBarUtils.setColor(this, getResources().getColor(R.color.colorPrimary));
     }
 

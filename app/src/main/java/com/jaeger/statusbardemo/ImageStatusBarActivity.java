@@ -37,7 +37,7 @@ public class ImageStatusBarActivity extends BaseActivity {
     }
 
     @Override
-    protected void setStatusBarColor() {
+    protected void setStatusBar() {
         StatusBarUtils.setTranslucent(this);
     }
 }
