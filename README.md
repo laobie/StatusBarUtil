@@ -52,7 +52,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 compile 'com.jaeger.statusbaruitl:library:1.0.0'
 ```
 
-##### 2. Call method you need after `setContentContentView`,  sucn as :
+##### 2. Call method you need after `setContentView()`,  sucn as :
 
 ```java
 setContentView(R.layout.main_activity);
