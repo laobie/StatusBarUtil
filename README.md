@@ -41,7 +41,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 	
   ![](img/set_color_for_drawer_layout.png)
   
-- By passing `statusBarAlpha` param, you can change status bar alpha, if you need. (default staus bar alpha value is 112).
+- Pass statusBarAlpha param when necessary to change your status bar alpha, which is 112 by default.
   
 
 ### Usage
