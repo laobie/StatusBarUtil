@@ -32,7 +32,6 @@
         android:layout_above="@id/sb_change_alpha"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorAccent"
         android:textSize="36sp"/>
-
 </RelativeLayout>
