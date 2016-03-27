@@ -7,7 +7,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ### Sample
 [Download StatusBarUtil-Demo](http://fir.im/5mnp)
 
-### Feature
+### Features
 
 - Set status bar color
 	
