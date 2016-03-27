@@ -60,7 +60,7 @@ setContentView(R.layout.main_activity);
 StatusBarUtil.setColor(MainActivity.this, mColor);
 ```
 
-##### 3. If you use this util in a page which is contain a `DrawerLayout`, you need add `android:fitsSystemWindows="true"` for `DrawerLayout` in your layout XML:
+##### 3. If you use this util in a page which containing a `DrawerLayout`, you need add `android:fitsSystemWindows="true"` for `DrawerLayout` in your layout XML:
 
 ```xml
 <android.support.v4.widget.DrawerLayout
