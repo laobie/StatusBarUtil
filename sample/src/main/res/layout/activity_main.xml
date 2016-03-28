@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
-                android:text="Ser Translucent"/>
+                android:text="Set Translucent"/>
 
         </LinearLayout>
     </FrameLayout>
