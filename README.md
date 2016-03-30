@@ -1,4 +1,6 @@
 # StatusBarUtil
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-StatusBarUtil-green.svg?style=true)](https://android-arsenal.com/details/1/3341)
+
 
 A util for setting status bar style on Android App. It can work above API 19(KitKat 4.4).
 
