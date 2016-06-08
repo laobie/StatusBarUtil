@@ -9,6 +9,16 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ### Sample
 [Download StatusBarUtil-Demo](http://fir.im/5mnp)
 
+### Change Log
+
++ 1.1.0
+
+    fix some bugs
+
++ 1.0.0
+
+	first publish
+
 ### Features
 
 - Set status bar color
@@ -51,7 +61,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ##### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.0.0'
+compile 'com.jaeger.statusbaruitl:library:1.1.0'
 ```
 
 
