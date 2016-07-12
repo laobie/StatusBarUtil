@@ -77,7 +77,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
     ```java
     StatusBarUtil.setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
     ```
-   ![](img/set_for_image_view.png)
+   ![](img/set_for_image_view_page.png)
   
 - Pass statusBarAlpha param when necessary to change your status bar alpha, which is 112 by default.
   
