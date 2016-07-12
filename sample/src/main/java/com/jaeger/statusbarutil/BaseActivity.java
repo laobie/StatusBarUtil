@@ -21,5 +21,4 @@ public class BaseActivity extends AppCompatActivity {
     protected void setStatusBar() {
         StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
     }
-
 }

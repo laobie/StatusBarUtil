@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.jaeger.statusbardemo"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jaeger.statusbardemo">
 
     <application
         android:allowBackup="true"
@@ -18,8 +18,8 @@
         <activity
             android:name="com.jaeger.statusbarutil.ColorStatusBarActivity"
             android:label="@string/app_name"/>
-        <activity android:name="com.jaeger.statusbarutil.ImageStatusBarActivity"
-            android:theme="@style/AppTheme"/>
+        <activity android:name="com.jaeger.statusbarutil.ImageStatusBarActivity"/>
+        <activity android:name="com.jaeger.statusbarutil.ImageViewActivity"/>
     </application>
 
 </manifest>

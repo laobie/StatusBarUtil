@@ -1,6 +1,8 @@
 # StatusBarUtil
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-StatusBarUtil-green.svg?style=true)](https://android-arsenal.com/details/1/3341)
 
+[![Download](https://api.bintray.com/packages/laobie/maven/statusbarutil/images/download.svg) ](https://bintray.com/laobie/maven/statusbarutil/_latestVersion)
+
 
 A util for setting status bar style on Android App. It can work above API 19(KitKat 4.4).
 
@@ -10,6 +12,19 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 [Download StatusBarUtil-Demo](http://fir.im/5mnp)
 
 ### Change Log
++ 1.2.0
+	
+	add methond for page wtich using ImageView as head view
+	
+	~~~ java
+	setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
+	~~~ 
+	
+	and
+	
+	~~~ java 
+	setTranslucentForImageView(Activity activity, View needOffsetView)
+	~~~
 
 + 1.1.1
 
@@ -56,6 +71,13 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 	```
 	
   ![](img/set_color_for_drawer_layout.png)
+
+- Set translucent status bar for using ImageView as head view page
+
+    ```java
+    StatusBarUtil.setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
+    ```
+   ![](img/set_for_image_view.png)
   
 - Pass statusBarAlpha param when necessary to change your status bar alpha, which is 112 by default.
   
