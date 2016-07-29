@@ -14,7 +14,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ### Change Log
 + 1.2.0
 	
-	add methond for page witch using ImageView as head view
+	add methond for page which using ImageView as head view
 	
 	~~~ java
 	setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
