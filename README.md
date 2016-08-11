@@ -12,9 +12,26 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 [Download StatusBarUtil-Demo](http://fir.im/5mnp)
 
 ### Change Log
++ 1.2.3
+
+    fix method `setTranslucentForImageView` support pass null as needOffsetView
+
+    add method for fragment witch using ImageView as head view
+
+    ~~~ java
+    setTranslucentForImageViewInFragment(Activity activity, View needOffsetView)
+    setTransparentForImageViewInFragment(Activity activity, View needOffsetView)
+    ~~~
+
+    fix setTranslucent bug when root layout is CoordinatorLayout
+
+    ~~~ java
+    setTranslucentForCoordinatorLayout(Activity activity, int statusBarAlpha)
+    ~~~
+
 + 1.2.0
 	
-	add methond for page which using ImageView as head view
+	add method for page witch using ImageView as head view
 	
 	~~~ java
 	setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
@@ -78,7 +95,11 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
     StatusBarUtil.setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
     ```
    ![](img/set_for_image_view_page.png)
-  
+
+- Use in fragment
+
+   ![](img/use_in_fragment.gif)
+
 - Pass statusBarAlpha param when necessary to change your status bar alpha, which is 112 by default.
   
 
@@ -87,7 +108,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ##### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.2.0'
+compile 'com.jaeger.statusbaruitl:library:1.2.3'
 ```
 
 
@@ -117,6 +138,8 @@ StatusBarUtil.setColor(MainActivity.this, mColor);
 ```
 
 ##### 4. All `statusBarAlpha` value you set should between 0 ~ 255
+
+####  5. How use in Fragment please read
 
 ### License
 
