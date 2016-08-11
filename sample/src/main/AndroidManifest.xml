@@ -20,6 +20,7 @@
             android:label="@string/app_name"/>
         <activity android:name="com.jaeger.statusbarutil.ImageStatusBarActivity"/>
         <activity android:name="com.jaeger.statusbarutil.ImageViewActivity"/>
+        <activity android:name="com.jaeger.statusbarutil.UseInFragmentActivity"/>
     </application>
 
 </manifest>

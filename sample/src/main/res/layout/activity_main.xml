@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="72dp"
+                android:layout_marginTop="32dp"
                 android:text="Set Color"/>
 
             <Button
@@ -79,6 +79,14 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
                 android:text="Set For ImageView"/>
+
+            <Button
+                android:id="@+id/btn_use_in_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:text="Use In Fragment"/>
 
         </LinearLayout>
     </FrameLayout>

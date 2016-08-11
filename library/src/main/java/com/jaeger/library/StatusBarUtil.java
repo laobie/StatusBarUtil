@@ -119,6 +119,22 @@ public class StatusBarUtil {
     }
 
     /**
+     * 针对根布局是 CoordinatorLayout, 使状态栏半透明
+     *
+     * 适用于图片作为背景的界面,此时需要图片填充到状态栏
+     *
+     * @param activity       需要设置的activity
+     * @param statusBarAlpha 状态栏透明度
+     */
+    public static void setTranslucentForCoordinatorLayout(Activity activity, int statusBarAlpha) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+        transparentStatusBar(activity);
+        addTranslucentView(activity, statusBarAlpha);
+    }
+
+    /**
      * 设置状态栏全透明
      *
      * @param activity 需要设置的activity
@@ -324,6 +340,16 @@ public class StatusBarUtil {
     }
 
     /**
+     * 为头部是 ImageView 的界面设置状态栏全透明
+     *
+     * @param activity       需要设置的activity
+     * @param needOffsetView 需要向下偏移的 View
+     */
+    public static void setTransparentForImageView(Activity activity, View needOffsetView) {
+        setTranslucentForImageView(activity, 0, needOffsetView);
+    }
+
+    /**
      * 为头部是 ImageView 的界面设置状态栏透明(使用默认透明度)
      *
      * @param activity       需要设置的activity
@@ -354,8 +380,55 @@ public class StatusBarUtil {
                 .setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
         addTranslucentView(activity, statusBarAlpha);
-        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
-        layoutParams.setMargins(0, getStatusBarHeight(activity), 0, 0);
+        if (needOffsetView != null) {
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
+            layoutParams.setMargins(0, getStatusBarHeight(activity), 0, 0);
+        }
+    }
+
+    /**
+     * 为 fragment 头部是 ImageView 的设置状态栏透明
+     *
+     * @param activity       fragment 对应的 activity
+     * @param needOffsetView 需要向下偏移的 View
+     */
+    public static void setTranslucentForImageViewInFragment(Activity activity, View needOffsetView) {
+        setTranslucentForImageViewInFragment(activity, DEFAULT_STATUS_BAR_ALPHA, needOffsetView);
+    }
+
+    /**
+     * 为 fragment 头部是 ImageView 的设置状态栏透明
+     *
+     * @param activity       fragment 对应的 activity
+     * @param needOffsetView 需要向下偏移的 View
+     */
+    public static void setTransparentForImageViewInFragment(Activity activity, View needOffsetView) {
+        setTranslucentForImageViewInFragment(activity, 0, needOffsetView);
+    }
+
+    /**
+     * 为 fragment 头部是 ImageView 的设置状态栏透明
+     *
+     * @param activity       fragment 对应的 activity
+     * @param statusBarAlpha 状态栏透明度
+     * @param needOffsetView 需要向下偏移的 View
+     */
+    public static void setTranslucentForImageViewInFragment(Activity activity, int statusBarAlpha, View needOffsetView) {
+        setTranslucentForImageView(activity, statusBarAlpha, needOffsetView);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            clearPreviousSetting(activity);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private static void clearPreviousSetting(Activity activity) {
+        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+        int count = decorView.getChildCount();
+        if (count > 0 && decorView.getChildAt(count - 1) instanceof StatusBarView) {
+            decorView.removeViewAt(count - 1);
+            ViewGroup rootView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
+            rootView.setPadding(0, -getStatusBarHeight(activity), 0, 0);
+        }
     }
 
     /**
