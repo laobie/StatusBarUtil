@@ -139,7 +139,7 @@ StatusBarUtil.setColor(MainActivity.this, mColor);
 
 ##### 4. All `statusBarAlpha` value you set should between 0 ~ 255
 
-####  5. How use in Fragment please read
+####  5. How use in Fragment please read [UseInFragmentActivity.java](https://github.com/laobie/StatusBarUtil/blob/master/sample/src/main/java/com/jaeger/statusbarutil/UseInFragmentActivity.java)
 
 ### License
 
