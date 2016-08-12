@@ -8,6 +8,8 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
 [中文版点我](http://laobie.github.io/android/2016/03/27/statusbar-util.html)
 
+![](img/status_bar_util.png)
+
 ### Sample
 [Download StatusBarUtil-Demo](http://fir.im/5mnp)
 
@@ -32,7 +34,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 + 1.2.0
 	
 	add method for page witch using ImageView as head view
-	
+
 	~~~ java
 	setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
 	~~~ 
