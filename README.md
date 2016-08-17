@@ -14,6 +14,10 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 [Download StatusBarUtil-Demo](http://fir.im/5mnp)
 
 ### Change Log
++ 1.2.4
+
+    fix bug in method `setTransparentForImageViewInFragment`
+
 + 1.2.3
 
     fix method `setTranslucentForImageView` support pass null as needOffsetView
@@ -110,7 +114,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ##### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.2.3'
+compile 'com.jaeger.statusbaruitl:library:1.2.4'
 ```
 
 
