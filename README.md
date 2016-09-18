@@ -14,6 +14,13 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 [Download StatusBarUtil-Demo](http://fir.im/5mnp)
 
 ### Change Log
+
++ 1.2.5
+
+    - add `@ColorInt`, if you pass a color res, now you will get a error
+
+    - fix bug: ContentView in DrawerLayout padding not work
+
 + 1.2.4
 
     fix bug in method `setTransparentForImageViewInFragment`
@@ -114,7 +121,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ##### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.2.4'
+compile 'com.jaeger.statusbaruitl:library:1.2.5'
 ```
 
 
