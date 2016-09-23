@@ -11,7 +11,7 @@ import com.jaeger.statusbardemo.R;
 /**
  * Created by Jaeger on 16/8/11.
  *
- * Email: chjie.jaeger@gamil.com
+ * Email: chjie.jaeger@gmail.com
  * GitHub: https://github.com/laobie
  */
 public class ImageFragment extends Fragment {

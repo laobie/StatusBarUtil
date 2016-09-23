@@ -19,7 +19,7 @@ import java.util.Random;
 /**
  * Created by Jaeger on 16/8/11.
  *
- * Email: chjie.jaeger@gamil.com
+ * Email: chjie.jaeger@gmail.com
  * GitHub: https://github.com/laobie
  */
 public class UseInFragmentActivity extends BaseActivity {

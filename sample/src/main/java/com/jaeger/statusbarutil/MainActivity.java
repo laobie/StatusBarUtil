@@ -17,7 +17,7 @@ import com.jaeger.statusbardemo.R;
 /**
  * Created by Jaeger on 16/2/14.
  *
- * Email: chjie.jaeger@gamil.com
+ * Email: chjie.jaeger@gmail.com
  * GitHub: https://github.com/laobie
  */
 public class MainActivity extends BaseActivity {

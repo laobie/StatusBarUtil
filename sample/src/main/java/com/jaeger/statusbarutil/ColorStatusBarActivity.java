@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * Created by Jaeger on 16/2/14.
  *
- * Email: chjie.jaeger@gamil.com
+ * Email: chjie.jaeger@gmail.com
  * GitHub: https://github.com/laobie
  */
 public class ColorStatusBarActivity extends BaseActivity {
