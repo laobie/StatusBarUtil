@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         applicationId "com.jaeger.statusbardemo"
@@ -23,10 +23,10 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:24.1.1'
-    compile 'com.android.support:design:24.1.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
 
-    compile 'com.jaeger.statusbaruitl:library:1.2.5'
-    //        compile project(path: ':library')
+    compile 'com.jaeger.statusbaruitl:library:1.2.6'
+//            compile project(path: ':library')
 }

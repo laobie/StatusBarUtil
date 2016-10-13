@@ -15,6 +15,10 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
 ### Change Log
 
++ 1.2.6
+
+    - update support version to 24.2.1
+
 + 1.2.5
 
     - add `@ColorInt`, if you pass a color res, now you will get a error
@@ -121,7 +125,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ##### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.2.5'
+compile 'com.jaeger.statusbaruitl:library:1.2.6'
 ```
 
 
