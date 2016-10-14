@@ -126,7 +126,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 - Set color for swipe back page
 
     ```java
-    setColorForSwipeBack(Activity activity, @ColorInt int color, int statusBarAlpha)
+    StatusBarUtil.setColorForSwipeBack(Activity activity, @ColorInt int color, int statusBarAlpha)
     ```
 
     ![](img/set_color_for_swipe_back_page.png)
