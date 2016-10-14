@@ -60,6 +60,32 @@ public class StatusBarUtil {
     }
 
     /**
+     * 为滑动返回界面设置状态栏颜色
+     *
+     * @param activity 需要设置的activity
+     * @param color    状态栏颜色值
+     */
+    public static void setColorForSwipeBack(Activity activity, int color) {
+        setColorForSwipeBack(activity, color, DEFAULT_STATUS_BAR_ALPHA);
+    }
+
+    /**
+     * 为滑动返回界面设置状态栏颜色
+     *
+     * @param activity       需要设置的activity
+     * @param color          状态栏颜色值
+     * @param statusBarAlpha 状态栏透明度
+     */
+    public static void setColorForSwipeBack(Activity activity, @ColorInt int color, int statusBarAlpha) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            ViewGroup contentView = ((ViewGroup) activity.findViewById(android.R.id.content));
+            contentView.setPadding(0, getStatusBarHeight(activity), 0, 0);
+            contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+            setTransparentForWindow(activity);
+        }
+    }
+
+    /**
      * 设置状态栏纯色 不加半透明效果
      *
      * @param activity 需要设置的 activity
@@ -375,15 +401,7 @@ public class StatusBarUtil {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
-            activity.getWindow()
-                .getDecorView()
-                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        } else {
-            activity.getWindow()
-                .setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        setTransparentForWindow(activity);
         addTranslucentView(activity, statusBarAlpha);
         if (needOffsetView != null) {
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
@@ -424,6 +442,8 @@ public class StatusBarUtil {
             clearPreviousSetting(activity);
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private static void clearPreviousSetting(Activity activity) {
@@ -493,6 +513,21 @@ public class StatusBarUtil {
         ViewGroup rootView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
         rootView.setFitsSystemWindows(true);
         rootView.setClipToPadding(true);
+    }
+
+    /**
+     * 设置透明
+     */
+    private static void setTransparentForWindow(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+            activity.getWindow()
+                .getDecorView()
+                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity.getWindow()
+                .setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }
 
     /**

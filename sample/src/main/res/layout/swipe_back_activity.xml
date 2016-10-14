@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -21,7 +20,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:padding="16dp"
-        android:text="this is a color status bar page"
+        android:text="this is a color status bar page \n and can swipe back"
         android:textColor="#333333"
         android:textSize="18sp"/>
 
@@ -34,20 +33,5 @@
         android:padding="16dp"
         android:text="Change StatusBar Color"/>
 
-    <TextView
-        android:id="@+id/tv_status_alpha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/colorAccent"
-        android:textSize="24sp"
-        tools:text="112"/>
-
-    <SeekBar
-        android:id="@+id/sb_change_alpha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
 
 </LinearLayout>

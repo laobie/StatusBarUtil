@@ -21,6 +21,7 @@
         <activity android:name="com.jaeger.statusbarutil.ImageStatusBarActivity"/>
         <activity android:name="com.jaeger.statusbarutil.ImageViewActivity"/>
         <activity android:name="com.jaeger.statusbarutil.UseInFragmentActivity"/>
+        <activity android:name="com.jaeger.statusbarutil.SwipeBackActivity"/>
     </application>
 
 </manifest>

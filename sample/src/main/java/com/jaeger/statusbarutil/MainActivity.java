@@ -29,6 +29,8 @@ public class MainActivity extends BaseActivity {
     private Button mBtnSetTranslucent;
     private Button mBtnSetForImageView;
     private Button mBtnUseInFragment;
+    private Button mBtnSetColorForSwipeBack;
+
     private ViewGroup contentLayout;
     private SeekBar mSbChangeAlpha;
     private TextView mTvStatusAlpha;
@@ -50,6 +52,7 @@ public class MainActivity extends BaseActivity {
         mBtnSetTranslucent = (Button) findViewById(R.id.btn_set_translucent);
         mBtnSetForImageView = (Button) findViewById(R.id.btn_set_for_image_view);
         mBtnUseInFragment = (Button) findViewById(R.id.btn_use_in_fragment);
+        mBtnSetColorForSwipeBack = (Button) findViewById(R.id.btn_set_color_for_swipe_back);
         mSbChangeAlpha = (SeekBar) findViewById(R.id.sb_change_alpha);
         mTvStatusAlpha = (TextView) findViewById(R.id.tv_status_alpha);
         setSupportActionBar(mToolbar);
@@ -97,6 +100,14 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, UseInFragmentActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mBtnSetColorForSwipeBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SwipeBackActivity.class);
                 startActivity(intent);
             }
         });

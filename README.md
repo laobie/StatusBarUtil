@@ -15,6 +15,12 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
 ### Change Log
 
++ 1.2.7
+
+    - add `setColorForSwipeBack` method, now support
+
+        - [r0adkll/Slidr: Easily add slide to dismiss functionality to an Activity](https://github.com/r0adkll/Slidr)
+
 + 1.2.6
 
     - update support version to 24.2.1
@@ -117,6 +123,14 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
    ![](img/use_in_fragment.gif)
 
+- Set color for swipe back page
+
+    ```java
+    setColorForSwipeBack(Activity activity, @ColorInt int color, int statusBarAlpha)
+    ```
+
+    ![](img/set_color_for_swipe_back_page.png)
+
 - Pass statusBarAlpha param when necessary to change your status bar alpha, which is 112 by default.
   
 
@@ -125,7 +139,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ##### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.2.6'
+compile 'com.jaeger.statusbaruitl:library:1.2.7'
 ```
 
 

@@ -9,6 +9,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import com.jaeger.library.StatusBarUtil;
 import com.jaeger.statusbardemo.R;
+import com.r0adkll.slidr.Slidr;
 
 /**
  * Created by Jaeger on 16/7/12.
@@ -28,6 +29,8 @@ public class ImageViewActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_view);
+        // 设置右滑动返回
+        Slidr.attach(this);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mViewNeedOffset = findViewById(R.id.view_need_offset);
         mTvStatusAlpha = (TextView) findViewById(R.id.tv_status_alpha);
