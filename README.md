@@ -15,6 +15,10 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
 ### Change Log
 
++ 1.2.8
+
+    - fix method `setColorDiff` bug
+
 + 1.2.7
 
     - add `setColorForSwipeBack` method, now support
@@ -139,7 +143,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ##### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.2.7'
+compile 'com.jaeger.statusbaruitl:library:1.2.8'
 ```
 
 
