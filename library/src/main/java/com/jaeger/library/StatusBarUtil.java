@@ -106,15 +106,13 @@ public class StatusBarUtil {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
-        activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        // 生成一个状态栏大小的矩形
-        ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
-        int count = decorView.getChildCount();
-        if (count > 0 && decorView.getChildAt(count - 1) instanceof StatusBarView) {
-            decorView.getChildAt(count - 1).setBackgroundColor(color);
+        transparentStatusBar(activity);
+        ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
+        // 移除半透明矩形,以免叠加
+        if (contentView.getChildCount() > 1) {
+            contentView.getChildAt(1).setBackgroundColor(color);
         } else {
-            StatusBarView statusView = createStatusBarView(activity, color);
-            decorView.addView(statusView);
+            contentView.addView(createStatusBarView(activity, color));
         }
         setRootView(activity);
     }
