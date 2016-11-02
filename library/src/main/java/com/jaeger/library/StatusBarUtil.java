@@ -247,13 +247,22 @@ public class StatusBarUtil {
                     contentLayout.getPaddingRight(), contentLayout.getPaddingBottom());
         }
         // 设置属性
+        setDrawerLayoutProperty(drawerLayout, contentLayout);
+        addTranslucentView(activity, statusBarAlpha);
+    }
+
+    /**
+     * 设置 DrawerLayout 属性
+     *
+     * @param drawerLayout              DrawerLayout
+     * @param drawerLayoutContentLayout DrawerLayout 的内容布局
+     */
+    private static void setDrawerLayoutProperty(DrawerLayout drawerLayout, ViewGroup drawerLayoutContentLayout) {
         ViewGroup drawer = (ViewGroup) drawerLayout.getChildAt(1);
         drawerLayout.setFitsSystemWindows(false);
-        contentLayout.setFitsSystemWindows(false);
-        contentLayout.setClipToPadding(true);
+        drawerLayoutContentLayout.setFitsSystemWindows(false);
+        drawerLayoutContentLayout.setClipToPadding(true);
         drawer.setFitsSystemWindows(false);
-
-        addTranslucentView(activity, statusBarAlpha);
     }
 
     /**
@@ -281,11 +290,7 @@ public class StatusBarUtil {
                 contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
             }
             // 设置属性
-            ViewGroup drawer = (ViewGroup) drawerLayout.getChildAt(1);
-            drawerLayout.setFitsSystemWindows(false);
-            contentLayout.setFitsSystemWindows(false);
-            contentLayout.setClipToPadding(true);
-            drawer.setFitsSystemWindows(false);
+            setDrawerLayoutProperty(drawerLayout, contentLayout);
         }
     }
 
@@ -338,11 +343,7 @@ public class StatusBarUtil {
         }
 
         // 设置属性
-        ViewGroup drawer = (ViewGroup) drawerLayout.getChildAt(1);
-        drawerLayout.setFitsSystemWindows(false);
-        contentLayout.setFitsSystemWindows(false);
-        contentLayout.setClipToPadding(true);
-        drawer.setFitsSystemWindows(false);
+        setDrawerLayoutProperty(drawerLayout, contentLayout);
     }
 
     /**
