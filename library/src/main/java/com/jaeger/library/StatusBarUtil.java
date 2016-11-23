@@ -235,7 +235,7 @@ public class StatusBarUtil {
         // 添加 statusBarView 到布局中
         ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
         if (contentLayout.getChildCount() > 0 && contentLayout.getChildAt(0) instanceof StatusBarView) {
-            contentLayout.getChildAt(0).setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+            contentLayout.getChildAt(0).setBackgroundColor(color);
         } else {
             StatusBarView statusBarView = createStatusBarView(activity, color);
             contentLayout.addView(statusBarView, 0);
