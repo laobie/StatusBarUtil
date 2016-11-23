@@ -1,5 +1,9 @@
 ## Change Log
 
+#### 1.3.1
+
+- Bug fix
+
 #### 1.3.0
 
 - Fix multi-fragment problem && rootView may not ViewGroup bug

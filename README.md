@@ -24,7 +24,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 #### 1. Add the dependencies to your build.gradle file, StatusBarUtil is avaiable in JCenter:
 
 ```groovy
-compile 'com.jaeger.statusbaruitl:library:1.3.0'
+compile 'com.jaeger.statusbaruitl:library:1.3.1'
 ```
 
 
