@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.ViewGroup;
@@ -514,7 +515,7 @@ public class StatusBarUtil {
             View childView = parent.getChildAt(i);
             if (childView instanceof ViewGroup) {
                 childView.setFitsSystemWindows(true);
-                ((ViewGroup)childView).setClipToPadding(true);
+                ((ViewGroup) childView).setClipToPadding(true);
             }
         }
     }
@@ -593,5 +594,16 @@ public class StatusBarUtil {
         green = (int) (green * a + 0.5);
         blue = (int) (blue * a + 0.5);
         return 0xff << 24 | red << 16 | green << 8 | blue;
+    }
+
+    public static void setCollapsingToolbarLayout(Activity activity, CollapsingToolbarLayout collapsingToolbarLayout,
+        @ColorInt int color) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+        transparentStatusBar(activity);
+        addTranslucentView(activity, 38);
+        collapsingToolbarLayout.setStatusBarScrimColor(color);
+        collapsingToolbarLayout.setContentScrimColor(color);
     }
 }

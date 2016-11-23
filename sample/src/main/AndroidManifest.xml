@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppBaseTheme">
         <activity android:name="com.jaeger.statusbarutil.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,7 +21,10 @@
         <activity android:name="com.jaeger.statusbarutil.ImageStatusBarActivity"/>
         <activity android:name="com.jaeger.statusbarutil.ImageViewActivity"/>
         <activity android:name="com.jaeger.statusbarutil.UseInFragmentActivity"/>
-        <activity android:name="com.jaeger.statusbarutil.SwipeBackActivity"/>
+        <activity
+            android:name="com.jaeger.statusbarutil.SwipeBackActivity"
+            android:theme="@style/AppTheme.Transparent"/>
+        <activity android:name="com.jaeger.statusbarutil.CollapsingToolbarLayoutActivity"/>
     </application>
 
 </manifest>
