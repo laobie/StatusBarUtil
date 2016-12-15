@@ -404,7 +404,8 @@ public class StatusBarUtil {
         addTranslucentView(activity, statusBarAlpha);
         if (needOffsetView != null) {
             ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
-            layoutParams.setMargins(0, getStatusBarHeight(activity), 0, 0);
+            layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(activity),
+                layoutParams.rightMargin, layoutParams.bottomMargin);
         }
     }
 
@@ -514,7 +515,7 @@ public class StatusBarUtil {
             View childView = parent.getChildAt(i);
             if (childView instanceof ViewGroup) {
                 childView.setFitsSystemWindows(true);
-                ((ViewGroup)childView).setClipToPadding(true);
+                ((ViewGroup) childView).setClipToPadding(true);
             }
         }
     }
