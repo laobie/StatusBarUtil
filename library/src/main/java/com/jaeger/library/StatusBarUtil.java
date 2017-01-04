@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +80,20 @@ public class StatusBarUtil {
     public static void setColorForSwipeBack(Activity activity, @ColorInt int color, int statusBarAlpha) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             ViewGroup contentView = ((ViewGroup) activity.findViewById(android.R.id.content));
-            contentView.setPadding(0, getStatusBarHeight(activity), 0, 0);
-            contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+            View rootView = contentView.getChildAt(0);
+            if (rootView != null && rootView instanceof CoordinatorLayout) {
+                CoordinatorLayout coordinatorLayout = (CoordinatorLayout) rootView;
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                    coordinatorLayout.setFitsSystemWindows(false);
+                    contentView.setPadding(0, getStatusBarHeight(activity), 0, 0);
+                    contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+                } else {
+                    coordinatorLayout.setStatusBarBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+                }
+            } else {
+                contentView.setPadding(0, getStatusBarHeight(activity), 0, 0);
+                contentView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
+            }
             setTransparentForWindow(activity);
         }
     }
