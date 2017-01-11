@@ -2,12 +2,12 @@
 
 ### 1.3.5
 
-- add method hideFakeStatusBarView to hide fake StatusBarView
+- add method `hideFakeStatusBarView` to hide fake StatusBarView
 
 ### 1.3.4
 ### 1.3.3
 
-- fix setColorForSwipeBack method with CoordinatorLayout bug
+- fix `setColorForSwipeBack` method with `CoordinatorLayout` bug
 
 ### 1.3.2
 
