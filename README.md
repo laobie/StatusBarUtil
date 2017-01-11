@@ -51,9 +51,17 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
    </android.support.v4.widget.DrawerLayout>
    ```
 
-4. All `statusBarAlpha` value you set should between 0 ~ 255
+4. Set color for swipe back page
 
-5. How to use in Fragment, please read [UseInFragmentActivity.java](https://github.com/laobie/StatusBarUtil/blob/master/sample/src/main/java/com/jaeger/statusbarutil/UseInFragmentActivity.java) 
+   Recommend using  with [bingoogolapple/BGASwipeBackLayout\-Android: Android Activity 滑动返回](https://github.com/bingoogolapple/BGASwipeBackLayout-Android)
+
+   ```java
+   StatusBarUtil.setColorForSwipeBack(Activity activity, @ColorInt int color, int statusBarAlpha)
+   ```
+
+5. All `statusBarAlpha` value you set should between 0 ~ 255
+
+6. How to use in Fragment, please read [UseInFragmentActivity.java](https://github.com/laobie/StatusBarUtil/blob/master/sample/src/main/java/com/jaeger/statusbarutil/UseInFragmentActivity.java) 
 
    Handle all Fragments in ViewPager as ImageViewFragment, add a fake View in your Fragment layout as StatusBar :
 
