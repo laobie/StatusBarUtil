@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = "1.3.6"
+version = "1.4.0"
 
 android {
     compileSdkVersion 25
@@ -26,14 +26,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
 }
 
 def siteUrl = 'https://github.com/laobie/StatusBarUtil'
 def gitUrl = 'https://github.com/laobie/StatusBarUtil.git'
 def issueUrl = 'https://github.com/laobie/StatusBarUtil/issues'
-group = "com.jaeger.statusbaruitl"
+group = "com.jaeger.statusbarutil"
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -90,7 +90,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "statusbarutil"
+        name = "StatusBarUtil"
         desc = 'Android StatusBar Util'
         websiteUrl = siteUrl
         issueTrackerUrl = issueUrl

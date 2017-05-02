@@ -9,8 +9,8 @@ android {
         applicationId "com.jaeger.statusbardemo"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 6
-        versionName "1.3.2"
+        versionCode 7
+        versionName "1.3.6"
     }
     buildTypes {
         release {
@@ -23,11 +23,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.3.0'
 
-//    compile 'com.jaeger.statusbaruitl:library:1.3.2'
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
     compile 'com.r0adkll:slidableactivity:2.0.5'
-    compile project(path: ':library')
+//    compile project(path: ':library')
 }
