@@ -2,6 +2,10 @@
 
 ### 1.4.0
 
+add set light/dark mode method
+
+### 1.4.0
+
 fix typo
 
 ### 1.3.6

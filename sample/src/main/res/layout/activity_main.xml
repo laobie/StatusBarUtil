@@ -97,6 +97,14 @@
                 android:layout_margin="4dp"
                 android:text="Set Color For Swipe Back Page "/>
 
+            <Button
+                android:id="@+id/btn_switch_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:text="Switch Light or Dark Mode"/>
+
         </LinearLayout>
     </FrameLayout>
 

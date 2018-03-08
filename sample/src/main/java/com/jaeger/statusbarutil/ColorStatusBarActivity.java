@@ -2,7 +2,6 @@ package com.jaeger.statusbarutil;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -31,10 +30,10 @@ public class ColorStatusBarActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_color_status_bar);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mBtnChangeColor = (Button) findViewById(R.id.btn_change_color);
-        mTvStatusAlpha = (TextView) findViewById(R.id.tv_status_alpha);
-        mSbChangeAlpha = (SeekBar) findViewById(R.id.sb_change_alpha);
+        mToolbar = findViewById(R.id.toolbar);
+        mBtnChangeColor = findViewById(R.id.btn_change_color);
+        mTvStatusAlpha = findViewById(R.id.tv_status_alpha);
+        mSbChangeAlpha = findViewById(R.id.sb_change_alpha);
 
         // 设置toolbar
         setSupportActionBar(mToolbar);
@@ -81,11 +80,4 @@ public class ColorStatusBarActivity extends BaseActivity {
         StatusBarUtil.setColor(this, mColor);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
