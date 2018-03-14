@@ -16,7 +16,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
 ### ChangeLog 
 
-[Click Me](ChangeLog.md)
+[CLICK ME](CHANGE_LOG.md)
 
 ### Usage
 
