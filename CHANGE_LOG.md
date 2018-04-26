@@ -1,5 +1,9 @@
 ## Change Log
 
+### 1.5.1
+
+fix set light/dark mode bug
+
 ### 1.5.0
 
 add set light/dark mode method
