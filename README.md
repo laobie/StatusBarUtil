@@ -8,7 +8,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
 [中文版点我](http://laobie.github.io/android/2016/03/27/statusbar-util.html)
 
-![](img/status_bar_util.png)
+![](https://raw.githubusercontent.com/LuigiBaute/StatusBarUtil/45219b97f43690e333471a9874cb0c79ae212f73/img/DRIVE%20(2).png)
 
 ### Sample
 
