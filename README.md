@@ -1,4 +1,7 @@
 # StatusBarUtil
+
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-StatusBarUtil-green.svg?style=true)](https://android-arsenal.com/details/1/3341)
 
 [ ![Download](https://api.bintray.com/packages/laobie/maven/StatusBarUtil/images/download.svg) ](https://bintray.com/laobie/maven/StatusBarUtil/_latestVersion)
