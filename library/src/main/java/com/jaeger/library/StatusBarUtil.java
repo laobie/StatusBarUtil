@@ -3,6 +3,7 @@ package com.jaeger.library;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -702,8 +703,9 @@ public class StatusBarUtil {
      */
     private static int getStatusBarHeight(Context context) {
         // 获得状态栏高度
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        return context.getResources().getDimensionPixelSize(resourceId);
+        Resources resources = Resources.getSystem();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        return resources.getDimensionPixelSize(resourceId);
     }
 
     /**
