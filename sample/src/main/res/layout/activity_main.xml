@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
@@ -24,7 +23,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/colorPrimary"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
             <CheckBox
                 android:id="@+id/chb_translucent"
@@ -32,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:text="Translucent"/>
+                android:text="Translucent" />
 
             <TextView
                 android:id="@+id/tv_status_alpha"
@@ -40,14 +39,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/colorAccent"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
             <SeekBar
                 android:id="@+id/sb_change_alpha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"/>
+                android:layout_marginRight="16dp" />
 
             <Button
                 android:id="@+id/btn_set_color"
@@ -55,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="4dp"
-                android:text="Set Color"/>
+                android:text="Set Color" />
 
             <Button
                 android:id="@+id/btn_set_transparent"
@@ -63,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:text="Set Transparent"/>
+                android:text="Set Transparent" />
 
             <Button
                 android:id="@+id/btn_set_translucent"
@@ -71,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:text="Set Translucent"/>
+                android:text="Set Translucent" />
 
             <Button
                 android:id="@+id/btn_set_for_image_view"
@@ -79,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:text="Set For ImageView"/>
+                android:text="Set For ImageView" />
 
             <Button
                 android:id="@+id/btn_use_in_fragment"
@@ -87,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:text="Use In Fragment"/>
+                android:text="Use In Fragment" />
 
             <Button
                 android:id="@+id/btn_set_color_for_swipe_back"
@@ -95,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:text="Set Color For Swipe Back Page "/>
+                android:text="Set Color For Swipe Back Page " />
 
             <Button
                 android:id="@+id/btn_switch_mode"
@@ -103,7 +102,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="4dp"
-                android:text="Switch Light or Dark Mode"/>
+                android:text="Switch Light or Dark Mode" />
+
+            <Button
+                android:id="@+id/btn_light_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="4dp"
+                android:text="light model with imageView" />
 
         </LinearLayout>
     </FrameLayout>
@@ -115,6 +122,6 @@
         android:layout_gravity="start"
         android:background="@color/white"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/activity_main_drawer"/>
+        app:menu="@menu/activity_main_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
