@@ -15,7 +15,7 @@ import com.jaeger.library.StatusBarUtil;
 import com.jaeger.statusbardemo.R;
 
 /**
- * Created by walter on 08/03/2018.
+ * Created by walter on 2019/11/7.
  * Email: fengxiao1493@qq.com
  * GitHub: https://github.com/walterFeng
  */
