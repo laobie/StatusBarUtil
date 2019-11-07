@@ -146,6 +146,15 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
   ![](img/set_transparent.png)
 
+- Change the transparency of the status bar to using ImageView as the title view page
+
+  ```java
+  StatusBarUtil.setStatusColorForImageView(Activity activity, @ColorInt int color, int colorAlpha);
+  StatusBarUtil.setColorWithAlpha(Activity activity, @ColorInt int color, int colorAlpha);
+  ```
+
+  ![](img/change_status_bar_for_imageview.gif)
+
 - Set status bar color for `DrawerLayout`
 
   ```java
