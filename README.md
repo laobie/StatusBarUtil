@@ -1,10 +1,17 @@
 # StatusBarUtil
 
-[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+> **招人广告:** 
+> **字节跳动各业务线**均可内推，可直接推我现在所在的部门 **TikTok/抖音** 业务线，提供以下服务：
+>
+> - **简历修改**
+> - **面试指导**
+> - **进度跟进**
+>
+> 欢迎看机会的人加我微信，也欢迎进行技术交流。
+>
+> ![Lark20210629-164537.jpg](https://i.loli.net/2021/06/29/fUalgXmdzbcqLGo.jpg)
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-StatusBarUtil-green.svg?style=true)](https://android-arsenal.com/details/1/3341)
-
-[ ![Download](https://api.bintray.com/packages/laobie/maven/StatusBarUtil/images/download.svg) ](https://bintray.com/laobie/maven/StatusBarUtil/_latestVersion)
 
 A util for setting status bar style on Android App. It can work above API 19(KitKat 4.4).
 
@@ -75,13 +82,13 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
        android:layout_width="match_parent"
        android:layout_height="match_parent"
        android:orientation="vertical">
-
+   
        <View
            android:id="@+id/fake_statusbar_view"
            android:layout_width="match_parent"
            android:layout_height="@dimen/statusbar_view_height"
            android:background="@color/colorPrimary"/>
-
+   
        <TextView
            android:id="@+id/tv_title"
            android:layout_width="match_parent"
@@ -98,11 +105,11 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 
    ```xml
    ~ values-v19/dimens.xml
-
+   
    <dimen name="statusbar_view_height">25dp</dimen>
-
+   
    ~ values/dimens.xml
-
+   
    <dimen name="statusbar_view_height">0dp</dimen>
    ```
 
@@ -188,7 +195,7 @@ A util for setting status bar style on Android App. It can work above API 19(Kit
 ### License
 
 	Copyright 2016 Jaeger Chen
-
+	
 	Licensed under the Apache License, Version 2.0 (the "License");	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
 	
