@@ -13,6 +13,7 @@
 > ![Lark20210629-164537.jpg](https://i.loli.net/2021/06/29/fUalgXmdzbcqLGo.jpg)
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-StatusBarUtil-green.svg?style=true)](https://android-arsenal.com/details/1/3341)
+[![Maintainability](https://cloud.quality-gate.com/dashboard/api/badge?projectName=laobie_StatusBarUtil&branchName=master)](https://cloud.quality-gate.com/dashboard/branches/125086#overview)
 
 A util for setting status bar style on Android App. It can work above API 19(KitKat 4.4).
 
