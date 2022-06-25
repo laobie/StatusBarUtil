@@ -11,12 +11,13 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 import com.jaeger.library.StatusBarUtil;
 import com.jaeger.statusbardemo.R;
 
 /**
  * Created by Jaeger on 16/2/14.
- *
+ * <p>
  * Email: chjie.jaeger@gmail.com
  * GitHub: https://github.com/laobie
  */
@@ -31,6 +32,7 @@ public class MainActivity extends BaseActivity {
     private Button mBtnUseInFragment;
     private Button mBtnSetColorForSwipeBack;
     private Button mBtnSwitchMode;
+    private Button mBtnLightMode;
 
     private ViewGroup contentLayout;
     private SeekBar mSbChangeAlpha;
@@ -55,12 +57,13 @@ public class MainActivity extends BaseActivity {
         mBtnUseInFragment = findViewById(R.id.btn_use_in_fragment);
         mBtnSetColorForSwipeBack = findViewById(R.id.btn_set_color_for_swipe_back);
         mBtnSwitchMode = findViewById(R.id.btn_switch_mode);
+        mBtnLightMode = findViewById(R.id.btn_light_mode);
         mSbChangeAlpha = findViewById(R.id.sb_change_alpha);
         mTvStatusAlpha = findViewById(R.id.tv_status_alpha);
         setSupportActionBar(mToolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close);
+                R.string.navigation_drawer_close);
         mDrawerLayout.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -122,6 +125,14 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        mBtnLightMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LightModeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         mChbTranslucent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +144,7 @@ public class MainActivity extends BaseActivity {
                     contentLayout.setBackgroundDrawable(null);
                     mToolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                     StatusBarUtil.setColorForDrawerLayout(MainActivity.this, mDrawerLayout,
-                        getResources().getColor(R.color.colorPrimary), mAlpha);
+                            getResources().getColor(R.color.colorPrimary), mAlpha);
                 }
             }
         });

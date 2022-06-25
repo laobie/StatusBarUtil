@@ -23,6 +23,7 @@
         <activity android:name="com.jaeger.statusbarutil.UseInFragmentActivity"/>
         <activity android:name="com.jaeger.statusbarutil.SwipeBackActivity"/>
         <activity android:name="com.jaeger.statusbarutil.SwitchModeActivity"/>
+        <activity android:name="com.jaeger.statusbarutil.LightModeActivity"/>
     </application>
 
 </manifest>

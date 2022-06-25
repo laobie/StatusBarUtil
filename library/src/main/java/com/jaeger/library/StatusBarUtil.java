@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -26,7 +27,7 @@ import java.lang.reflect.Method;
  */
 public class StatusBarUtil {
 
-    public static final int DEFAULT_STATUS_BAR_ALPHA = 112;
+    public static final int DEFAULT_STATUS_BAR_ALPHA = 60;
     private static final int FAKE_STATUS_BAR_VIEW_ID = R.id.statusbarutil_fake_status_bar_view;
     private static final int FAKE_TRANSLUCENT_VIEW_ID = R.id.statusbarutil_translucent_view;
     private static final int TAG_KEY_HAVE_SET_OFFSET = -123;
@@ -48,9 +49,19 @@ public class StatusBarUtil {
      * @param color          状态栏颜色值
      * @param statusBarAlpha 状态栏透明度
      */
-
     public static void setColor(Activity activity, @ColorInt int color, @IntRange(from = 0, to = 255) int statusBarAlpha) {
+        boolean lightMode = isWhiteColor(color);
+        if (lightMode) {
+            setLightMode(activity);
+        } else {
+            setDarkMode(activity);
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            boolean supportApiM = lightMode && statusBarAlpha < DEFAULT_STATUS_BAR_ALPHA
+                    && Build.VERSION.SDK_INT < Build.VERSION_CODES.M;
+            if (supportApiM) {
+                statusBarAlpha = DEFAULT_STATUS_BAR_ALPHA;
+            }
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             activity.getWindow().setStatusBarColor(calculateStatusColor(color, statusBarAlpha));
@@ -64,7 +75,8 @@ public class StatusBarUtil {
                 }
                 fakeStatusBarView.setBackgroundColor(calculateStatusColor(color, statusBarAlpha));
             } else {
-                decorView.addView(createStatusBarView(activity, color, statusBarAlpha));
+                int finalColor = calculateStatusColor(color, statusBarAlpha);
+                decorView.addView(createStatusBarView(activity, finalColor));
             }
             setRootView(activity);
         }
@@ -88,7 +100,7 @@ public class StatusBarUtil {
      * @param statusBarAlpha 状态栏透明度
      */
     public static void setColorForSwipeBack(Activity activity, @ColorInt int color,
-        @IntRange(from = 0, to = 255) int statusBarAlpha) {
+                                            @IntRange(from = 0, to = 255) int statusBarAlpha) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             ViewGroup contentView = ((ViewGroup) activity.findViewById(android.R.id.content));
@@ -259,7 +271,7 @@ public class StatusBarUtil {
      * @param statusBarAlpha 状态栏透明度
      */
     public static void setColorForDrawerLayout(Activity activity, DrawerLayout drawerLayout, @ColorInt int color,
-        @IntRange(from = 0, to = 255) int statusBarAlpha) {
+                                               @IntRange(from = 0, to = 255) int statusBarAlpha) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
@@ -285,8 +297,8 @@ public class StatusBarUtil {
         // 内容布局不是 LinearLayout 时,设置padding top
         if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
             contentLayout.getChildAt(1)
-                .setPadding(contentLayout.getPaddingLeft(), getStatusBarHeight(activity) + contentLayout.getPaddingTop(),
-                    contentLayout.getPaddingRight(), contentLayout.getPaddingBottom());
+                    .setPadding(contentLayout.getPaddingLeft(), getStatusBarHeight(activity) + contentLayout.getPaddingTop(),
+                            contentLayout.getPaddingRight(), contentLayout.getPaddingBottom());
         }
         // 设置属性
         setDrawerLayoutProperty(drawerLayout, contentLayout);
@@ -356,7 +368,7 @@ public class StatusBarUtil {
      * @param drawerLayout DrawerLayout
      */
     public static void setTranslucentForDrawerLayout(Activity activity, DrawerLayout drawerLayout,
-        @IntRange(from = 0, to = 255) int statusBarAlpha) {
+                                                     @IntRange(from = 0, to = 255) int statusBarAlpha) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
@@ -443,7 +455,7 @@ public class StatusBarUtil {
      * @param needOffsetView 需要向下偏移的 View
      */
     public static void setTranslucentForImageView(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha,
-        View needOffsetView) {
+                                                  View needOffsetView) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return;
         }
@@ -454,10 +466,14 @@ public class StatusBarUtil {
             if (haveSetOffset != null && (Boolean) haveSetOffset) {
                 return;
             }
-            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) needOffsetView.getLayoutParams();
-            layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin + getStatusBarHeight(activity),
-                layoutParams.rightMargin, layoutParams.bottomMargin);
+            ViewGroup.LayoutParams layoutParams = needOffsetView.getLayoutParams();
+            if (!(layoutParams instanceof ViewGroup.MarginLayoutParams)) {
+                layoutParams = new ViewGroup.MarginLayoutParams(layoutParams.width, layoutParams.height);
+            }
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layoutParams;
+            params.topMargin = params.topMargin + getStatusBarHeight(activity);
             needOffsetView.setTag(TAG_KEY_HAVE_SET_OFFSET, true);
+            needOffsetView.setLayoutParams(params);
         }
     }
 
@@ -489,7 +505,7 @@ public class StatusBarUtil {
      * @param needOffsetView 需要向下偏移的 View
      */
     public static void setTranslucentForImageViewInFragment(Activity activity, @IntRange(from = 0, to = 255) int statusBarAlpha,
-        View needOffsetView) {
+                                                            View needOffsetView) {
         setTranslucentForImageView(activity, statusBarAlpha, needOffsetView);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             clearPreviousSetting(activity);
@@ -515,19 +531,39 @@ public class StatusBarUtil {
 
     @TargetApi(Build.VERSION_CODES.M)
     public static void setLightMode(Activity activity) {
+        setLightMode(activity, false);
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public static void setLightMode(Activity activity, boolean fitsSystemUI) {
         setMIUIStatusBarDarkIcon(activity, true);
         setMeizuStatusBarDarkIcon(activity, true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            int uiVisibility = activity.getWindow().getDecorView().getSystemUiVisibility();
+            uiVisibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            if (fitsSystemUI) {
+                uiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            }
+            activity.getWindow().getDecorView().setSystemUiVisibility(uiVisibility);
         }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     public static void setDarkMode(Activity activity) {
+        setDarkMode(activity, false);
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public static void setDarkMode(Activity activity, boolean fitsSystemUI) {
         setMIUIStatusBarDarkIcon(activity, false);
         setMeizuStatusBarDarkIcon(activity, false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            int uiVisibility = activity.getWindow().getDecorView().getSystemUiVisibility();
+            uiVisibility &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            if (fitsSystemUI) {
+                uiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            }
+            activity.getWindow().getDecorView().setSystemUiVisibility(uiVisibility);
         }
     }
 
@@ -604,31 +640,19 @@ public class StatusBarUtil {
     }
 
     /**
-     * 生成一个和状态栏大小相同的彩色矩形条
-     *
-     * @param activity 需要设置的 activity
-     * @param color    状态栏颜色值
-     * @return 状态栏矩形条
-     */
-    private static View createStatusBarView(Activity activity, @ColorInt int color) {
-        return createStatusBarView(activity, color, 0);
-    }
-
-    /**
      * 生成一个和状态栏大小相同的半透明矩形条
      *
-     * @param activity 需要设置的activity
-     * @param color    状态栏颜色值
-     * @param alpha    透明值
+     * @param activity   需要设置的activity
+     * @param finalColor 状态栏颜色值 alpha
      * @return 状态栏矩形条
      */
-    private static View createStatusBarView(Activity activity, @ColorInt int color, int alpha) {
+    private static View createStatusBarView(Activity activity, @ColorInt int finalColor) {
         // 绘制一个和状态栏一样高的矩形
         View statusBarView = new View(activity);
         LinearLayout.LayoutParams params =
-            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity));
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity));
         statusBarView.setLayoutParams(params);
-        statusBarView.setBackgroundColor(calculateStatusColor(color, alpha));
+        statusBarView.setBackgroundColor(finalColor);
         statusBarView.setId(FAKE_STATUS_BAR_VIEW_ID);
         return statusBarView;
     }
@@ -654,11 +678,11 @@ public class StatusBarUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
             activity.getWindow()
-                .getDecorView()
-                .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+                    .getDecorView()
+                    .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             activity.getWindow()
-                .setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                    .setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
 
@@ -687,7 +711,7 @@ public class StatusBarUtil {
         // 绘制一个和状态栏一样高的矩形
         View statusBarView = new View(activity);
         LinearLayout.LayoutParams params =
-            new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity));
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity));
         statusBarView.setLayoutParams(params);
         statusBarView.setBackgroundColor(Color.argb(alpha, 0, 0, 0));
         statusBarView.setId(FAKE_TRANSLUCENT_VIEW_ID);
@@ -700,7 +724,7 @@ public class StatusBarUtil {
      * @param context context
      * @return 状态栏高度
      */
-    private static int getStatusBarHeight(Context context) {
+    public static int getStatusBarHeight(Context context) {
         // 获得状态栏高度
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
@@ -726,4 +750,137 @@ public class StatusBarUtil {
         blue = (int) (blue * a + 0.5);
         return 0xff << 24 | red << 16 | green << 8 | blue;
     }
+
+    /**
+     * @param color 颜色值
+     * @param alpha 颜色透明度
+     * @return 颜色值对应的透明度的色值
+     */
+    public static int calculateColorLightMode(@ColorInt int color, int alpha) {
+        return calculateColorLightMode(color, alpha, 0);
+    }
+
+    /**
+     * @param color     颜色值
+     * @param alpha     颜色透明度
+     * @param darkAlpha 灰色遮罩透明度
+     * @return 颜色值对应的透明度的色值
+     */
+    public static int calculateColorLightMode(@ColorInt int color, int alpha, int darkAlpha) {
+        int red = color >> 16 & 0xff;
+        int green = color >> 8 & 0xff;
+        int blue = color & 0xff;
+        if (darkAlpha > 0) {
+            float a = 1 - darkAlpha / 255f;
+            red = (int) (red * a + 0.5);
+            green = (int) (green * a + 0.5);
+            blue = (int) (blue * a + 0.5);
+        }
+        return alpha << 24 | red << 16 | green << 8 | blue;
+    }
+
+    /**
+     * 为头部是 ImageView 的界面设置状态栏(带一个透明度的)颜色
+     *
+     * @param activity       需要设置的activity
+     * @param color          状态栏颜色值
+     * @param statusBarAlpha 透明度
+     * @param needOffsetView 需要向下偏移的 View
+     */
+    public static void setStatusColorForImageView(Activity activity, @ColorInt int color, @IntRange(from = 0, to = 255) int statusBarAlpha, View needOffsetView) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return;
+        }
+        setFullScreenForWindow(activity, isWhiteColor(color));
+        setColorWithAlpha(activity, color, statusBarAlpha);
+        if (needOffsetView != null) {
+            Object haveSetOffset = needOffsetView.getTag(TAG_KEY_HAVE_SET_OFFSET);
+            if (haveSetOffset != null && (Boolean) haveSetOffset) {
+                return;
+            }
+            ViewGroup.LayoutParams layoutParams = needOffsetView.getLayoutParams();
+            if (!(layoutParams instanceof ViewGroup.MarginLayoutParams)) {
+                layoutParams = new ViewGroup.MarginLayoutParams(layoutParams.width, layoutParams.height);
+            }
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) layoutParams;
+            params.topMargin = params.topMargin + getStatusBarHeight(activity);
+            needOffsetView.setTag(TAG_KEY_HAVE_SET_OFFSET, true);
+            needOffsetView.setLayoutParams(params);
+        }
+    }
+
+    /**
+     * @param color 颜色值
+     * @return 是否是白色
+     */
+    private static boolean isWhiteColor(@ColorInt int color) {
+        if (color == Color.WHITE) {
+            return true;
+        }
+        int red = color >> 16 & 0xff;
+        int green = color >> 8 & 0xff;
+        int blue = color & 0xff;
+        return red == 255 | green == 255 | blue == 255;
+    }
+
+    /**
+     * 设置状态栏(带一个透明度的)颜色
+     *
+     * @param activity       需要设置的activity
+     * @param color          状态栏颜色值
+     * @param statusBarAlpha 透明度
+     */
+    public static void setColorWithAlpha(Activity activity, @ColorInt int color, @IntRange(from = 0, to = 255) int statusBarAlpha) {
+        boolean lightMode = isWhiteColor(color);
+        if (lightMode) {
+            setLightMode(activity);
+        } else {
+            setDarkMode(activity);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            boolean supportApiM = lightMode && Build.VERSION.SDK_INT < Build.VERSION_CODES.M;
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            activity.getWindow().setStatusBarColor(calculateColorLightMode(color, statusBarAlpha, supportApiM ? DEFAULT_STATUS_BAR_ALPHA : 0));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
+            View fakeStatusBarView = decorView.findViewById(FAKE_STATUS_BAR_VIEW_ID);
+            if (fakeStatusBarView != null) {
+                if (fakeStatusBarView.getVisibility() == View.GONE) {
+                    fakeStatusBarView.setVisibility(View.VISIBLE);
+                }
+                fakeStatusBarView.setBackgroundColor(calculateColorLightMode(color, statusBarAlpha));
+            } else {
+                int finalColor = calculateColorLightMode(color, statusBarAlpha);
+                decorView.addView(createStatusBarView(activity, finalColor));
+            }
+            setRootView(activity);
+        }
+    }
+
+    /**
+     * 设置视图填充到状态栏上去
+     *
+     * @param activity  需要设置的activity
+     * @param lightMode 是否亮色主题
+     */
+    public static void setFullScreenForWindow(Activity activity, boolean lightMode) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            int uiVisibility = activity.getWindow().getDecorView().getSystemUiVisibility();
+            uiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;
+            if (lightMode && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                uiVisibility |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            } else {
+                uiVisibility |= View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            }
+            activity.getWindow()
+                    .getDecorView()
+                    .setSystemUiVisibility(uiVisibility);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            activity.getWindow()
+                    .setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
+
 }
